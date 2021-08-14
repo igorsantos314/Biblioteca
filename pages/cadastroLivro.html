@@ -13,7 +13,7 @@
         <nav>
             <ul id="menu">
                 <li id="logo">BeloBiblio</li>
-                <li><a href="home.html" id="home">Home</a></li>
+                <li><a href="home.php" id="home">Home</a></li>
                 <li><a href="" id="exit">Sair</a></li>
             </ul>
         </nav>
@@ -33,14 +33,14 @@
     <main>
         <strong>Cadastro de Livro</strong>
         <div id="content_main">
-            <form action="">
+            <form action="inserirLivro.php" method="POST">
                 
                 <fieldset>
                     <div class="field">
                         <label for="name">Nome do livro</label>
-                        <input type="text" name="name" id="">
+                        <input type="text" name="nome" id="">
                     </div>
-
+                    
                     <div class="field-group">
                         <div class="field">
                             <label for="cod">C&oacute;digo do livro</label>
@@ -80,7 +80,7 @@
                             <label for="editora">Editora</label>
                             <input type="text" name="editora" id="">
                         </div>
-
+                        
                         <div class="field">
                             <label for="genero">G&ecirc;nero</label>
                             <select name="genero" id="">

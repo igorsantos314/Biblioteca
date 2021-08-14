@@ -68,7 +68,7 @@
                 $clientes = mysqli_query($connect, "select * from cliente where ;");
                 
                 $colors = array("blue", "green", "red");
-
+                
                 while ($c = mysqli_fetch_assoc($clientes)) {
                     $nome = $c["nome"];
                     $cpf = $c["cpf"];

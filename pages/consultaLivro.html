@@ -12,7 +12,7 @@
         <nav>
             <ul id="menu">
                 <li id="logo">BeloBiblio</li>
-                <li><a href="home.html" id="home">Home</a></li>
+                <li><a href="home.php" id="home">Home</a></li>
                 <li><a href="" id="exit">Sair</a></li>
             </ul>
         </nav>
@@ -32,7 +32,10 @@
     <main>
         <strong>Consulta de Livro</strong>
         <div id="content_main">
-            
+            <form action="exibirConsultaLivro.php" method="POST">
+                <input type="text" name="codigo">
+                <input type="submit" value="Consultar">
+            </form>
         </div>
     </main>
     </div>

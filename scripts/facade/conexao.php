@@ -1,6 +1,12 @@
 <?php
     require_once("../scripts/persistencia/persistencia.php");
     
+    /**
+     * Entidade Conexao - 
+     * Conexão entre a lógica de negócio e a persistência
+     * 
+     * @copyright 2021, Igor Santos, Gabriel Vasconcelos, Rafaella Weiss, Everton Lima
+     */
     class conexao{
 
         /** @var conexao Instância da Classe Conexão*/
@@ -18,6 +24,7 @@
         }
         
         /**
+         * Recebe os parametros e envia o objeto Cliente para a persistência
          * @param string $cpf CPF do cliente
          * @param string $nome Nome do cliente
          * @param string $rg RG do cliente
@@ -36,6 +43,7 @@
         }
         
         /**
+         * Recebe os parâmetros e envia o objeto Livro para a persistência
          * @param int $codigo Código do Livro
          * @param string $nome Nome do Livro
          * @param string $estante Estante do Livro
@@ -53,6 +61,7 @@
         }
         
         /**
+         * Recebe os parâmetros e envia o objeto ClienteAlugaLivro para a persistência
          * @param string $cpfCliente CPF do Cliente que está alugando o livro
          * @param string $codigoLivro Código do Livro que está sendo alugado
          * @param string $dataAluguel Data que foi efetuada a locação do livro

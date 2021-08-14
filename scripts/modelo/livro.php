@@ -5,10 +5,10 @@
      * @copyright 2021, Igor Santos, Gabriel Vasconcelos, Rafaella Weiss, Everton Lima
      */
     class livro{
-
+        
         /** @var int Código do Livro*/
         private $codigo;
-
+        
         /** @var string Nome do Livro */
         private $nome;
 

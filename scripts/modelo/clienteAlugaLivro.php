@@ -2,12 +2,29 @@
     require_once("cliente.php");
     require_once("livro.php");
     
+    /**
+     * Entidade ClienteAlugaLivro - 
+     * Uma instância dessa classe armazena um cliente, um livro e a data do aluguel do livro
+     * 
+     * @copyright 2021, Igor Santos, Gabriel Vasconcelos, Rafaella Weiss, Everton Lima
+     */
     class clienteAlugaLivro{
         
+        /** @var cliente Instância de Cliente */
         private cliente $cliente;
+
+        /** @var livro Instância de Livro */
         private livro $livro;
+
+        /** @var string Data do Aluguel do Livro */
         private $dataAluguel; // FORMATO AAAA/MM/DD
         
+        /**
+         * Construtor da Classe clienteAlugaLivro
+         * @param cliente $cliente Instancia do Cliente
+         * @param livro $livro Instância do alugado Livro
+         * @param string $cliente Data do Aluguel do Livro
+         */
         public function __construct(cliente $cliente, livro $livro, $dataAluguel)
         {
             $this->cliente = $cliente;

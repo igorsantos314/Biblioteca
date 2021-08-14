@@ -13,7 +13,7 @@
         <nav>
             <ul id="menu">
                 <li id="logo">BeloBiblio</li>
-                <li><a href="home.html" id="home">Home</a></li>
+                <li><a href="home.php" id="home">Home</a></li>
                 <li><a href="" id="exit">Sair</a></li>
             </ul>
         </nav>
@@ -31,17 +31,29 @@
         </aside>
         
     <main>
+        <?php
+            require_once('../scripts/persistencia/persistencia.php');
+        ?>
+
         <strong>Home</strong>
         <div id="cards">
             <div id="livros" class="infos">
                 <img src="../assets/livro_cadastrado.png" alt="Logotipo de livro">
                 <p>Livros cadastrados</p>
-                <p class="dados">0</p>
+                <p class="dados">
+                    <?php
+                        print(persistencia::getInstance()->getQuantidadeLivros());
+                    ?>
+                </p>
             </div>
             <div id="clientes" class="infos">
                 <img src="../assets/student.png" alt="Logotipo de estudante">
                 <p>Clientes cadastrados</p>
-                <p class="dados">0</p>
+                <p class="dados">
+                    <?php
+                        print(persistencia::getInstance()->getQuantidadeClientes());
+                    ?>
+                </p>
             </div>
             <div id="emprestados" class="infos">
                 <img src="../assets/Book_open1.png" alt="Logotipo de livro aberto">
