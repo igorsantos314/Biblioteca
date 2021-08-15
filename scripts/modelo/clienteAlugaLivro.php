@@ -19,17 +19,25 @@
         /** @var string Data do Aluguel do Livro */
         private $dataAluguel; // FORMATO AAAA/MM/DD
         
+        /** @var string Status do Livro PENDENTE ou ENTREGUE */
+        private $status; // FORMATO AAAA/MM/DD
+
+        /** @var string Data de Devolução do Livro */
+        private $dataDevolucao; // FORMATO AAAA/MM/DD
+
         /**
          * Construtor da Classe clienteAlugaLivro
          * @param cliente $cliente Instancia do Cliente
          * @param livro $livro Instância do alugado Livro
          * @param string $cliente Data do Aluguel do Livro
          */
-        public function __construct(cliente $cliente, livro $livro, $dataAluguel)
+        public function __construct(cliente $cliente, livro $livro, $dataAluguel, $status='PENDENTE', $dataDevolucao=null)
         {
             $this->cliente = $cliente;
             $this->livro = $livro;
             $this->dataAluguel = $dataAluguel;
+            $this->status = $status;
+            $this->dataDevolucao = $dataDevolucao;
         }
         
         public function getClienteAluguel(){
@@ -42,6 +50,10 @@
 
         public function getDataAluguel(){
             return $this->dataAluguel;
+        }
+
+        public function getStatus(){
+            return $this->status;
         }
     }
 

@@ -93,6 +93,14 @@
                             <tr>
                                 <th>GENERO</th>
                                 <th>$genero</th>
+                            </tr>
+                            
+                            <tr>
+                                <th>
+                                    <button>EDITAR</button>
+                                    <button>DELETAR</button>
+                                </th>
+                                
                             </tr>");
                     }
                     else{

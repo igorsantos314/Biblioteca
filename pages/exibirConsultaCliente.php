@@ -87,6 +87,13 @@
                             <tr>
                                 <th>NUMERO/COMPLEMENTO</th>
                                 <th>$numero_complemento</th>
+                            </tr>
+                            
+                            <tr>
+                                <th>
+                                    <button>EDITAR</button>
+                                    <button>DELETAR</button>
+                                </th>
                             </tr>");
                     }
                     else{

@@ -33,6 +33,25 @@
         <strong>Empr&eacute;stimo de livro</strong>
         <div id="content_main">
             
+            <form action="inserirEmprestimo.php" method="POST">
+                <div class="field">
+                    <label for="cpfCliente">CPF do cliente</label>
+                    <input type="number" name="cpfCliente" id="">
+                </div>
+                
+                <div class="field">
+                    <label for="codigoLivro">Código do Livro</label>
+                    <input type="number" name="codigoLivro" id="">
+                </div>
+
+                <div class="field">
+                    <label for="dataAluguel">Data do Aluguel</label>
+                    <input type="text" name="dataAluguel" id="">
+                </div>
+                
+                <input type="submit" value="Salvar Emprestimo">
+            </form>
+
         </div>
     </main>
     </div>

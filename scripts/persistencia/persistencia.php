@@ -49,8 +49,8 @@
 
         public function cadastrarAluguel(clienteAlugaLivro $aluguel){
 
-            $query = "INSERT INTO cliente_aluga_livro(cpf_cliente, codigo_livro, data_aluguel)
-            VALUES ('".$aluguel->getClienteAluguel()."', ".$aluguel->getLivroAluguel().", '".$aluguel->getDataAluguel()."');";
+            $query = "INSERT INTO cliente_aluga_livro(cpf_cliente, codigo_livro, data_aluguel, status, data_devolucao)
+            VALUES ('".$aluguel->getClienteAluguel()."', ".$aluguel->getLivroAluguel().", '".$aluguel->getDataAluguel()."', '".$aluguel->getStatus()."', Null);";
 
             mysqli_query(
                 connection::getConnection(), 
@@ -89,7 +89,7 @@
                 return $dados_livro;
             }
         }
-
+        
         public function deleteCliente($cpf){
             $query = "delete from cliente where cpf='$cpf';";
 
@@ -139,6 +139,37 @@
                 //RETORNA QUANTIDADE DE LIVROS CADASTRADOS
                 return $quantidade['quant'];
             }
+        }
+
+        public function getQuantidadeEmprestimos()
+        {
+            $query = "select count(*) as quant from cliente_aluga_livro where status='PENDENTE'";
+
+            $quant_livros = mysqli_query(
+                connection::getConnection(), 
+                $query
+            );
+            
+            while ($quantidade = mysqli_fetch_assoc($quant_livros)) {
+                //RETORNA QUANTIDADE DE LIVROS CADASTRADOS
+                return $quantidade['quant'];
+            }
+        }
+
+        public function existCliente($cpf){
+            if($this->getCliente($cpf) == null){
+                return false;
+            }
+
+            return true;
+        }
+
+        public function existLivro($codigo_livro){
+            if($this->getLivro($codigo_livro) == null){
+                return false;
+            }
+            
+            return true;
         }
     }
 

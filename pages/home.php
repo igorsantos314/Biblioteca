@@ -58,7 +58,11 @@
             <div id="emprestados" class="infos">
                 <img src="../assets/Book_open1.png" alt="Logotipo de livro aberto">
                 <p>Livros emprestados</p>
-                <p class="dados">0</p>
+                <p class="dados">
+                    <?php
+                        print(persistencia::getInstance()->getQuantidadeEmprestimos());
+                    ?>
+                </p>
             </div>
         </div>
     </main>
