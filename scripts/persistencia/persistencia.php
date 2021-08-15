@@ -89,6 +89,23 @@
                 return $dados_livro;
             }
         }
+
+        public function getClienteAlugaLivro($id){
+
+            $query = "SELECT cal.id, c.cpf, c.nome, l.codigo_livro, l.nome_livro, cal.data_aluguel, cal.status, cal.data_devolucao 
+            FROM livro l, cliente c, cliente_aluga_livro cal 
+            WHERE l.codigo_livro=cal.codigo_livro and c.cpf=cal.cpf_cliente and cal.id=$id;";
+
+            $aluguel = mysqli_query(
+                connection::getConnection(), 
+                $query
+            );
+            
+            while ($dados_aluguel = mysqli_fetch_assoc($aluguel)) {
+                //RETORNA UM DICIONÁRIO DE DADOS DO ALUGUEL
+                return $dados_aluguel;
+            }
+        }
         
         public function deleteCliente($cpf){
             $query = "delete from cliente where cpf='$cpf';";
@@ -170,6 +187,15 @@
             }
             
             return true;
+        }
+        
+        public function updateStatusEmprestimo($id, $data_devolucao){
+            $query = "UPDATE cliente_aluga_livro SET status='ENTREGUE', data_devolucao='$data_devolucao' WHERE id=$id";
+            
+            mysqli_query(
+                connection::getConnection(), 
+                $query
+            );
         }
     }
 
