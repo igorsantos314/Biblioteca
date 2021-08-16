@@ -45,6 +45,9 @@
                 print('EMPRESTIMO NÃO EXISTE OU JÁ FOI ENTREGUE!');
             }
         ?>
+        <form action="devolucaoLivros.html">
+            <input type="submit" value="voltar">
+        </form>
     </main>
     </div>
 </body>

@@ -31,69 +31,73 @@
     <main>
         <strong>Consulta de Emprestimo de Livro</strong>
         <div id="content_main">
-            <table border="1">
-                <?php
-                    require_once('../scripts/persistencia/persistencia.php');
+            <form action="consultaEmprestimo.html">
+                <fieldset>
+                    <table border="1">
+                        <?php
+                            require_once('../scripts/persistencia/persistencia.php');
 
-                    $dados_aluguel = persistencia::getInstance()->getClienteAlugaLivro($_POST['id_aluguel']);
-                    
-                    if($dados_aluguel != null){
-                        
-                        print("
-                            <tr>
-                                <th>CODIGO</th>
-                                <th>".$dados_aluguel['id']."</th>
-                            </tr>
-
-                            <tr>
-                                <th>CPF DO CLIENTE</th>
-                                <th>".$dados_aluguel['cpf']."</th>
-                            </tr>
-
-                            <tr>
-                                <th>NOME DO CLIENTE</th>
-                                <th>".$dados_aluguel['nome']."</th>
-                            </tr>
+                            $dados_aluguel = persistencia::getInstance()->getClienteAlugaLivro($_POST['id_aluguel']);
                             
-                            <tr>
-                                <th>CODIGO DO LIVRO</th>
-                                <th>".$dados_aluguel['codigo_livro']."</th>
-                            </tr>
-                            
-                            <tr>
-                                <th>NOME DO LIVRO</th>
-                                <th>".$dados_aluguel['nome_livro']."</th>
-                            </tr>
-                            
-                            <tr>
-                                <th>DATA DO ALUGUEL</th>
-                                <th>".$dados_aluguel['data_aluguel']."</th>
-                            </tr>
-                            
-                            <tr>
-                                <th>STATUS</th>
-                                <th>".$dados_aluguel['status']."</th>
-                            </tr>
-                            
-                            <tr>
-                                <th>DATA DE DEVOLUÇÃO</th>
-                                <th>".$dados_aluguel['data_devolucao']."</th>
-                            </tr>
-                            
-                            <tr>
-                                <th>
-                                    <button>EDITAR</button>
-                                    <button>DELETAR</button>
-                                </th>
+                            if($dados_aluguel != null){
                                 
-                            </tr>");
-                    }
-                    else{
-                        print("EMPRESTIMO NÃO ENCONTRADO !");
-                    }
-                ?>
-            </table>
-            
+                                print("
+                                    <tr>
+                                        <th>CODIGO</th>
+                                        <th>".$dados_aluguel['id']."</th>
+                                    </tr>
+
+                                    <tr>
+                                        <th>CPF DO CLIENTE</th>
+                                        <th>".$dados_aluguel['cpf']."</th>
+                                    </tr>
+
+                                    <tr>
+                                        <th>NOME DO CLIENTE</th>
+                                        <th>".$dados_aluguel['nome']."</th>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <th>CODIGO DO LIVRO</th>
+                                        <th>".$dados_aluguel['codigo_livro']."</th>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <th>NOME DO LIVRO</th>
+                                        <th>".$dados_aluguel['nome_livro']."</th>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <th>DATA DO ALUGUEL</th>
+                                        <th>".$dados_aluguel['data_aluguel']."</th>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <th>STATUS</th>
+                                        <th>".$dados_aluguel['status']."</th>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <th>DATA DE DEVOLUÇÃO</th>
+                                        <th>".$dados_aluguel['data_devolucao']."</th>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <th>
+                                            <button>EDITAR</button>
+                                            <button>DELETAR</button>
+                                        </th>
+                                        
+                                    </tr>");
+                            }
+                            else{
+                                print("EMPRESTIMO NÃO ENCONTRADO !");
+                            }
+                        ?>
+                    </table>
+                    <button type="submit">Voltar</button>
+                </fieldset>
+            </form>
         </div>
     </main>
     </div>

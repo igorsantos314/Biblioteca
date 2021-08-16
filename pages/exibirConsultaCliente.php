@@ -102,6 +102,9 @@
                 ?>
             </table>
             
+            <form action="consultaCliente.html">
+                <input type="submit" value="Voltar">
+            </form>
         </div>
     </main>
     </div>

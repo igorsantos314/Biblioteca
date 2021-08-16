@@ -29,22 +29,16 @@
                 connection::getConnection(), 
                 $query
             );
-            
-            print("<br>CLIENTE CADASTRADO !<br>");
         }
 
         public function cadastrarLivro(livro $livro){
             $query = "INSERT INTO livro 
             VALUES ('".$livro->getCodigo()."', '".$livro->getNome()."', '".$livro->getEstante()."', '".$livro->getPrateleira()."', ".$livro->getQuantidade().", ".$livro->getAno().", '".$livro->getAutor()."', '".$livro->getEditora()."', '".$livro->getGenero()."');";
 
-            print($query);
-
             mysqli_query(
                 connection::getConnection(), 
                 $query
             );
-            
-            print("<br>LIVRO CADASTRADO !<br>");
         }
 
         public function cadastrarAluguel(clienteAlugaLivro $aluguel){
@@ -56,8 +50,6 @@
                 connection::getConnection(), 
                 $query
             );
-
-            print("<br> ALUGUEL CADASTRADO !<br>");
         }
 
         public function getCliente($cpf){
