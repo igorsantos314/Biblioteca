@@ -72,6 +72,21 @@
                 new clienteAlugaLivro(new cliente($cpfCliente), new livro($codigoLivro), $dataAluguel)
             );
         }
+
+        public function salvarEntregaLivro($id, $dataDevolucao){
+            $instanceAluguel = new clienteAlugaLivro(
+                new cliente(),
+                new livro()
+            );
+            
+            $instanceAluguel->setId($id);
+            $instanceAluguel->setDataDevolucao($dataDevolucao);
+            $instanceAluguel->setStatus('Entregue');
+
+            persistencia::getInstance()->updateStatusEmprestimo(
+                $instanceAluguel
+            );
+        }
     }
     
     //conexao::getInstance()->salvarLivro(11, 'Primo Rico', 'MEIO', '5', 10, 2020, 'Thiago', '', 'Finanças');

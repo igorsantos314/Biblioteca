@@ -188,9 +188,20 @@
             
             return true;
         }
+
+        public function existEmprestimo($idAluguel){
+            $instanceAluguel = $this->getClienteAlugaLivro($idAluguel);
+
+            if($instanceAluguel != null){
+                if($instanceAluguel['status'] == 'PENDENTE')
+                    return true;
+            }
+            
+            return false;
+        }
         
-        public function updateStatusEmprestimo($id, $data_devolucao){
-            $query = "UPDATE cliente_aluga_livro SET status='ENTREGUE', data_devolucao='$data_devolucao' WHERE id=$id";
+        public function updateStatusEmprestimo(clienteAlugaLivro $aluguel){
+            $query = "UPDATE cliente_aluga_livro SET status='ENTREGUE', data_devolucao='".$aluguel->getDataDevolucao()."' WHERE id=".$aluguel->getId()."";
             
             mysqli_query(
                 connection::getConnection(), 

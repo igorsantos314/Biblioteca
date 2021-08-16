@@ -36,7 +36,7 @@
                     require_once('../scripts/persistencia/persistencia.php');
 
                     $dados_aluguel = persistencia::getInstance()->getClienteAlugaLivro($_POST['id_aluguel']);
-
+                    
                     if($dados_aluguel != null){
                         
                         print("

@@ -45,7 +45,7 @@
          * @param string|null $editora Editora que publicou do Livro
          * @param string|null $genero Gênero do Livro
          */
-        public function __construct($codigo, $nome=null, $estante=null, $prateleira=null, $quantidade=null, $ano=null, $autor=null, $editora=null, $genero=null)
+        public function __construct($codigo=null, $nome=null, $estante=null, $prateleira=null, $quantidade=null, $ano=null, $autor=null, $editora=null, $genero=null)
         {
             $this->codigo = $codigo;
             $this->nome = $nome;

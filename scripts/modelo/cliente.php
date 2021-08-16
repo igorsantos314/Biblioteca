@@ -46,7 +46,7 @@
          * @param string|null $rua Rua do Cliente
          * @param string|null $numero_complemento Número ou Complemento do Endereço do cliente
          */
-        public function __construct($cpf, $nome=null, $rg=null, $data_nascimento=null, $telefone=null, $cidade=null, $bairro=null, $rua=null, $numero_complemento=null)
+        public function __construct($cpf=null, $nome=null, $rg=null, $data_nascimento=null, $telefone=null, $cidade=null, $bairro=null, $rua=null, $numero_complemento=null)
         {
             $this->cpf = $cpf;
             $this->nome = $nome;

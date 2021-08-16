@@ -10,6 +10,8 @@
      */
     class clienteAlugaLivro{
         
+        private $id;
+
         /** @var cliente Instância de Cliente */
         private cliente $cliente;
 
@@ -31,15 +33,18 @@
          * @param livro $livro Instância do alugado Livro
          * @param string $cliente Data do Aluguel do Livro
          */
-        public function __construct(cliente $cliente, livro $livro, $dataAluguel, $status='PENDENTE', $dataDevolucao=null)
+        public function __construct(cliente $cliente, livro $livro, $dataAluguel=null, $status='PENDENTE')
         {
             $this->cliente = $cliente;
             $this->livro = $livro;
             $this->dataAluguel = $dataAluguel;
             $this->status = $status;
-            $this->dataDevolucao = $dataDevolucao;
         }
         
+        public function getId(){
+            return $this->id;
+        }
+
         public function getClienteAluguel(){
             return $this->cliente->getCpf();
         }
@@ -54,6 +59,28 @@
 
         public function getStatus(){
             return $this->status;
+        }
+
+        public function getDataDevolucao(){
+            return $this->dataDevolucao;
+        }
+
+        public function setId($id){
+            $this->id = $id;
+        }
+
+        public function setDataDevolucao($dataDevolucao){
+            $this->dataDevolucao = $dataDevolucao;
+        }
+
+        /**
+         * @param string $status
+         * 
+         * @return [type]
+         */
+        public function setStatus($status)
+        {
+            $this->status = $status;
         }
     }
 

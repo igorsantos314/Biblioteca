@@ -31,17 +31,22 @@
         
     <main>
         <strong>Devolu&ccedil;&atilde;o de livros</strong>
-        <div id="content_main">
-            <form action="devolverLivro.php" method="POST">
-                <label for="idAluguel">ID DO ALUGUEL</label>
-                <input type="text" name="idAluguel">
+        <?php
+            require_once("../scripts/facade/conexao.php");
 
-                <label for="dataDevolucao">DATA DA DEVOLUÇÃO</label>
-                <input type="text" name="dataDevolucao">
-                <input type="submit" value="Devolver">
-            </form>
-        </div>
+            if (persistencia::getInstance()->existEmprestimo($_POST['idAluguel'])){
+                conexao::getInstance()->salvarEntregaLivro(
+                    $_POST['idAluguel'],
+                    $_POST['dataDevolucao']
+                );
+                print("LIVRO ENTREGUE !");
+            }
+            else{
+                print('EMPRESTIMO NÃO EXISTE OU JÁ FOI ENTREGUE!');
+            }
+        ?>
     </main>
     </div>
 </body>
 </html>
+
