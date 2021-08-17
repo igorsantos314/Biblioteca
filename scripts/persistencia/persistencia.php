@@ -209,6 +209,24 @@
             }
         }
 
+        public function dependenciaLivro($codigo){
+            $query = "  SELECT count(*) as quant_pendencias FROM cliente_aluga_livro
+                        WHERE status='PENDENTE' AND codigo_livro=$codigo;";
+
+            $quant = mysqli_query(
+                connection::getConnection(), 
+                $query
+            );
+
+            while ($q = mysqli_fetch_assoc($quant)) {
+                //RETORNA TODOS OS CLIENTES
+                if ($q['quant_pendencias'] > 0)
+                    return true;
+                
+                return false;
+            }
+        }
+        
         public function getTodosClientes(){
             $arrayClientes = array();
 
@@ -285,7 +303,7 @@
             $instanceAluguel = $this->getClienteAlugaLivro($idAluguel);
 
             if($instanceAluguel != null){
-                if($instanceAluguel['status'] == 'PENDENTE')
+                if($instanceAluguel->getStatus() == 'PENDENTE')
                     return true;
             }
             
@@ -307,11 +325,11 @@
             
             //REPOR O LIVRO NO STOCK
             $this->updateQuantidadeEmprestimo(
-                $aluguelCompleto['codigo_livro'],
+                $aluguelCompleto->getLivroAluguel()->getCodigo(),
                 1
             );
         }
-
+        
         public function updateQuantidadeEmprestimo($codigo_livro, $quantidade){
             $query = "  UPDATE livro
                         SET quantidade=quantidade + $quantidade
@@ -331,20 +349,16 @@
                 $query
             );
         }
-
+        
         public function deleteLivro($codigo){
             $query = "delete from livro where codigo_livro=$codigo;";
-            print($query);
             
-            $result = mysqli_query(
+            mysqli_query(
                 connection::getConnection(), 
                 $query
             );
-
-            print($result);
         }
     }
-
     //print(persistencia::getInstance()->getCliente('999')['telefone']);
     //persistencia::getInstance()->deleteCliente('3030');
     //persistencia::getInstance()->deleteLivro('10');

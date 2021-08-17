@@ -42,7 +42,12 @@
                         print("
                             <tr>
                                 <th>CODIGO</th>
-                                <th>".$livro->getCodigo()."</th>
+                                <th>
+                                    <form action='apagarLivro.php' method='POST'>
+                                        <input type='text' name='codigo' value=".$livro->getCodigo()." readonly>
+                                        <input type='submit' value='DELETAR'>
+                                    </form>
+                                </th>
                             </tr>
                             
                             <tr>
@@ -87,10 +92,10 @@
                             
                             <tr>
                                 <th>
-                                    <button>EDITAR</button>
-                                    <button>DELETAR</button>
+                                    <form action=''>
+                                        <button type='submit'>EDITAR</button>
+                                    </form>
                                 </th>
-                                
                             </tr>");
                     }
                     else{

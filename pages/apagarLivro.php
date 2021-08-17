@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/global.css">
     <link rel="icon" type="imagem/png" href="../assets/icon.png" />
-    <title>Consulta de livro</title>
+    <title>Consulta de cliente</title>
 </head>
     <header>
         <nav>
@@ -31,16 +31,24 @@
     <main>
         <strong>Consulta de Livro</strong>
         <div id="content_main">
-            <form action="exibirConsultaLivro.php" method="POST">
-                <input type="text" name="codigo">
-                <input type="submit" value="Consultar">
-            </form>
             
-            <form action="exibirTodosLivros.php">
-                <input type="submit" value="Exibir Todos os Livros">
-            </form>
+            <?php
+                require_once('../scripts/persistencia/persistencia.php');
+
+                if(persistencia::getInstance()->dependenciaLivro($_POST['codigo']) == false){
+                    persistencia::getInstance()->deleteLivro(
+                        $_POST['codigo']
+                    );
+                    print("LIVRO EXCLUIDO !");
+                }
+                else{
+                    print("VOCÊ NÃO PODE EXCLUIR UM LIVRO COM ALUGUEL PENDENTE !");
+                }
+                //header('location:consultaLivro.html');
+            ?>
         </div>
     </main>
     </div>
+    
 </body>
 </html>
