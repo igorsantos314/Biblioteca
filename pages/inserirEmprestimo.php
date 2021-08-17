@@ -42,6 +42,9 @@
                     elseif(persistencia::getInstance()->existLivro($_POST['codigoLivro']) == false){
                         print("LIVRO NÃO EXISTE !");
                     }
+                    elseif(persistencia::getInstance()->getQuantidadeLivro($_POST['codigoLivro']) == 0){
+                        print("QUANTIDADE INDISPONÍVEL !");
+                    }
                     else{
                         conexao::getInstance()->salvarClienteAlugaLivro(
                             $_POST['cpfCliente'],

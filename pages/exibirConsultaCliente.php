@@ -36,7 +36,7 @@
                     require_once('../scripts/persistencia/persistencia.php');
 
                     $cliente = persistencia::getInstance()->getCliente($_POST['cpf']);
-
+                    
                     if($cliente != null){
                         print("
                         <tr>

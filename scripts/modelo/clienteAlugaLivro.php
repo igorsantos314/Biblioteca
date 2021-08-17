@@ -14,7 +14,7 @@
 
         /** @var cliente Instância de Cliente */
         private cliente $cliente;
-
+        
         /** @var livro Instância de Livro */
         private livro $livro;
 
@@ -26,7 +26,7 @@
 
         /** @var string Data de Devolução do Livro */
         private $dataDevolucao; // FORMATO AAAA/MM/DD
-
+        
         /**
          * Construtor da Classe clienteAlugaLivro
          * @param cliente $cliente Instancia do Cliente
@@ -46,11 +46,11 @@
         }
 
         public function getClienteAluguel(){
-            return $this->cliente->getCpf();
+            return $this->cliente;
         }
 
         public function getLivroAluguel(){
-            return $this->livro->getCodigo();
+            return $this->livro;
         }
 
         public function getDataAluguel(){

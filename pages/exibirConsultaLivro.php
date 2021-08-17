@@ -29,70 +29,60 @@
             <a href="devolucaoLivros.html" id="optionsBtn">Devolu&ccedil;&atilde;o de livros</a>
         </aside>
     <main>
-        <strong>Consulta de cliente</strong>
+        <strong>Consulta de Livro</strong>
         <div id="content_main">
             <table border="1">
                 <?php
                     require_once('../scripts/persistencia/persistencia.php');
-
-                    $dados_livro = persistencia::getInstance()->getLivro($_POST['codigo']);
                     
-                    if($dados_livro != null){
-                        
-                        $codigo_livro = $dados_livro['codigo_livro'];
-                        $nome_livro = $dados_livro['nome_livro'];
-                        $estante = $dados_livro['estante'];
-                        $prateleira = $dados_livro['prateleira'];
-                        $quantidade = $dados_livro['quantidade'];
-                        $ano = $dados_livro['ano'];
-                        $autor = $dados_livro['autor'];
-                        $editora = $dados_livro['editora'];
-                        $genero = $dados_livro['genero'];
+                    $livro = persistencia::getInstance()->getLivro($_POST['codigo']);
+                    
+                    if($livro != null){
                         
                         print("
                             <tr>
                                 <th>CODIGO</th>
-                                <th>$codigo_livro</th>
+                                <th>".$livro->getCodigo()."</th>
                             </tr>
                             
                             <tr>
                                 <th>NOME</th>
-                                <th>$nome_livro</th>
+                                <th>".$livro->getNome()."</th>
                             </tr>
                             
                             <tr>
                                 <th>ESTANTE</th>
-                                <th>$estante</th>
+                                <th>".$livro->getEstante()."</th>
                             </tr>
                             
                             <tr>
                                 <th>PRATELEIRA</th>
-                                <th>$prateleira</th>
+                                <th>".$livro->getPrateleira()."</th>
                             </tr>
                             
                             <tr>
                                 <th>QUANTIDADE</th>
-                                <th>$quantidade</th>
+                                <th>".$livro->getQuantidade()."</th>
                             </tr>
                             
                             <tr>
                                 <th>ANO</th>
-                                <th>$ano</th>
+                                <th>".$livro->getAno()."</th>
                             </tr>
                             
                             <tr>
                                 <th>AUTOR</th>
-                                <th>$autor</th>
+                                <th>".$livro->getAutor()."</th>
                             </tr>
                             
                             <tr>
                                 <th>EDITORA</th>
-                                <th>$genero</th>
+                                <th>".$livro->getEditora()."</th>
                             </tr>
 
                             <tr>
                                 <th>GENERO</th>
-                                <th>$genero</th>
+                                <th>".$livro->getGenero()."</th>
                             </tr>
                             
                             <tr>
@@ -108,6 +98,11 @@
                     }
                 ?>
             </table>
+            <strong>
+                <form action="consultaLivro.html">
+                    <button type="submit">Voltar</button>
+                </form>
+            </strong>
             
         </div>
     </main>

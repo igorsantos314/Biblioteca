@@ -37,49 +37,49 @@
                         <?php
                             require_once('../scripts/persistencia/persistencia.php');
 
-                            $dados_aluguel = persistencia::getInstance()->getClienteAlugaLivro($_POST['id_aluguel']);
+                            $aluguel = persistencia::getInstance()->getClienteAlugaLivro($_POST['id_aluguel']);
                             
-                            if($dados_aluguel != null){
+                            if($aluguel != null){
                                 
                                 print("
                                     <tr>
                                         <th>CODIGO</th>
-                                        <th>".$dados_aluguel['id']."</th>
+                                        <th>".$aluguel->getId()."</th>
                                     </tr>
 
                                     <tr>
                                         <th>CPF DO CLIENTE</th>
-                                        <th>".$dados_aluguel['cpf']."</th>
+                                        <th>".$aluguel->getClienteAluguel()->getCpf()."</th>
                                     </tr>
 
                                     <tr>
                                         <th>NOME DO CLIENTE</th>
-                                        <th>".$dados_aluguel['nome']."</th>
+                                        <th>".$aluguel->getClienteAluguel()->getNome()."</th>
                                     </tr>
                                     
                                     <tr>
                                         <th>CODIGO DO LIVRO</th>
-                                        <th>".$dados_aluguel['codigo_livro']."</th>
+                                        <th>".$aluguel->getLivroAluguel()->getCodigo()."</th>
                                     </tr>
                                     
                                     <tr>
                                         <th>NOME DO LIVRO</th>
-                                        <th>".$dados_aluguel['nome_livro']."</th>
+                                        <th>".$aluguel->getLivroAluguel()->getNome()."</th>
                                     </tr>
                                     
                                     <tr>
                                         <th>DATA DO ALUGUEL</th>
-                                        <th>".$dados_aluguel['data_aluguel']."</th>
+                                        <th>".$aluguel->getDataAluguel()."</th>
                                     </tr>
                                     
                                     <tr>
                                         <th>STATUS</th>
-                                        <th>".$dados_aluguel['status']."</th>
+                                        <th>".$aluguel->getStatus()."</th>
                                     </tr>
                                     
                                     <tr>
                                         <th>DATA DE DEVOLUÇÃO</th>
-                                        <th>".$dados_aluguel['data_devolucao']."</th>
+                                        <th>".$aluguel->getDataDevolucao()."</th>
                                     </tr>
                                     
                                     <tr>

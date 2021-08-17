@@ -44,7 +44,7 @@
         public function cadastrarAluguel(clienteAlugaLivro $aluguel){
 
             $query = "INSERT INTO cliente_aluga_livro(cpf_cliente, codigo_livro, data_aluguel, status, data_devolucao)
-            VALUES ('".$aluguel->getClienteAluguel()."', ".$aluguel->getLivroAluguel().", '".$aluguel->getDataAluguel()."', '".$aluguel->getStatus()."', Null);";
+            VALUES ('".$aluguel->getClienteAluguel()->getCpf()."', ".$aluguel->getLivroAluguel()->getCodigo().", '".$aluguel->getDataAluguel()."', '".$aluguel->getStatus()."', Null);";
 
             mysqli_query(
                 connection::getConnection(), 
@@ -93,8 +93,18 @@
             );
             
             while ($dados_livro = mysqli_fetch_assoc($livro)) {
-                //RETORNA UM DICIONÁRIO DE DADOS DO LIVRO
-                return $dados_livro;
+                //RETORNA UMA INSTANCIA DE LIVRO
+                return new livro(
+                    $dados_livro['codigo_livro'],
+                    $dados_livro['nome_livro'],
+                    $dados_livro['estante'],
+                    $dados_livro['prateleira'],
+                    $dados_livro['quantidade'],
+                    $dados_livro['ano'],
+                    $dados_livro['autor'],
+                    $dados_livro['editora'],
+                    $dados_livro['genero'],
+                );
             }
         }
 
@@ -110,11 +120,36 @@
             );
             
             while ($dados_aluguel = mysqli_fetch_assoc($aluguel)) {
-                //RETORNA UM DICIONÁRIO DE DADOS DO ALUGUEL
-                return $dados_aluguel;
+
+                $instanceAluguel = new clienteAlugaLivro(
+                    new cliente(
+                        $dados_aluguel['cpf'],
+                        $dados_aluguel['nome']
+                    ),
+                    new livro(
+                        $dados_aluguel['codigo_livro'],
+                        $dados_aluguel['nome_livro']
+                    ),
+                    $dados_aluguel['data_aluguel']
+                );
+                
+                $instanceAluguel->setId(
+                    $dados_aluguel['id']
+                );
+                
+                $instanceAluguel->setStatus(
+                    $dados_aluguel['status']
+                );
+                
+                $instanceAluguel->setDataDevolucao(
+                    $dados_aluguel['data_devolucao']
+                );
+                
+                //RETORNA UMA INSTANCIA DE CLIENTE ALUGA LIVRO
+                return $instanceAluguel;
             }
         }
-
+        
         public function getQuantidadeClientes()
         {
             $query = "select count(*) as quant from cliente";
@@ -159,7 +194,7 @@
                 return $quantidade['quant'];
             }
         }
-
+        
         public function getQuantidadeLivro($codigo_livro){
             $query = "SELECT quantidade FROM livro WHERE codigo_livro=$codigo_livro";
             
@@ -202,6 +237,34 @@
             return $arrayClientes;
         }
 
+        public function getTodosLivros(){
+            $arrayLivros = array();
+
+            $query = "SELECT * FROM livro;";
+            
+            $livros = mysqli_query(
+                connection::getConnection(), 
+                $query
+            );
+            
+            while ($dados_livro = mysqli_fetch_assoc($livros)) {
+                //RETORNA TODOS OS CLIENTES
+                $arrayLivros[] = new livro(
+                    $dados_livro['codigo_livro'],
+                    $dados_livro['nome_livro'],
+                    $dados_livro['estante'],
+                    $dados_livro['prateleira'],
+                    $dados_livro['quantidade'],
+                    $dados_livro['ano'],
+                    $dados_livro['autor'],
+                    $dados_livro['editora'],
+                    $dados_livro['genero'],
+                );
+            }
+            
+            return $arrayLivros;
+        }
+        
         public function existCliente($cpf){
             if($this->getCliente($cpf) == null){
                 return false;
