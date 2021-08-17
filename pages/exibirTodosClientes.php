@@ -42,55 +42,64 @@
                         foreach($clientes as $cliente){
                             print("
                             <table border='1'>
+                                <tr align='left'>
+                                    <td colspan='3'>
+                                        
+                                        ".$cliente->getNome()."
+                                        
+                                    </td>
+                                </tr>
                                 <tr>
-                                    <th>CPF</th>
-                                    <th>".$cliente->getCpf()."</th>
+                                    <td colspan='3'>
+                                        <b>INFORMAÇÕES PESSOAIS</b> 
+                                    </td>
                                 </tr>
                                 
                                 <tr>
-                                    <th>NOME</th>
-                                    <th>".$cliente->getNome()."</th>
+                                    <td>
+                                        CPF: ".$cliente->getCpf()."
+                                    </td>
+                                    <td>
+                                        RG: ".$cliente->getRg()."
+                                    </td>
+                                    <td>
+                                        DATA DE NASCIMENTO: ".$cliente->getDataNascimento()."
+                                    </td>
+                                </tr>
                                 </tr>
                                 
                                 <tr>
-                                    <th>RG</th>
-                                    <th>".$cliente->getRg()."</th>
+                                    <td colspan='3'>
+                                        <b>ENDEREÇO</b>
+                                    </td>
                                 </tr>
                                 
                                 <tr>
-                                    <th>DATA DE NASCIMENTO</th>
-                                    <th>".$cliente->getDataNascimento()."</th>
-                                </tr>
-                                
+                                    <td colspan='3'>
+                                        CIDADE: ".$cliente->getCidade()."
+                                    </td> 
+                                </tr>    
+
                                 <tr>
-                                    <th>TELEFONE</th>
-                                    <th>".$cliente->getTelefone()."</th>
+                                    <td colspan='3'>
+                                        BAIRRO: ".$cliente->getBairro()."
+                                    </td>
                                 </tr>
-                                
+
                                 <tr>
-                                    <th>CIDADE</th>
-                                    <th>".$cliente->getCidade()."</th>
+                                    <td colspan='3'>
+                                        RUA: ".$cliente->getRua()."
+                                    </td>
                                 </tr>
-                                
+
                                 <tr>
-                                    <th>BAIRRO</th>
-                                    <th>".$cliente->getBairro()."</th>
-                                </tr>
-                                
-                                <tr>
-                                    <th>RUA</th>
-                                    <th>".$cliente->getRua()."</th>
-                                </tr>
-                                
-                                <tr>
-                                    <th>NUMERO/COMPLEMENTO</th>
-                                    <th>".$cliente->getNumeroComplemento()."</th>
+                                    <td colspan='3'>
+                                        COMPLEMENTO: ".$cliente->getNumeroComplemento()."
+                                    </td>
                                 </tr>
                             </table>
                             <br>");
-                            
                         }
-                        
                     }
                     else{
                         print("NENHUM CLIENTE CADASTRADO !");
