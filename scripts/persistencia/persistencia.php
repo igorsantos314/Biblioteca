@@ -68,11 +68,21 @@
             );
 
             while ($dados_cliente = mysqli_fetch_assoc($cliente)) {
-                //RETORNA UM DICIONÁRIO DE DADOS DO CLIENTES
-                return $dados_cliente;
+                //RETORNA UMA INSTANCIA DE CLIENTE
+                return new cliente(
+                    $dados_cliente['cpf'],
+                    $dados_cliente['nome'],
+                    $dados_cliente['rg'],
+                    $dados_cliente['data_nascimento'],
+                    $dados_cliente['telefone'],
+                    $dados_cliente['cidade'],
+                    $dados_cliente['bairro'],
+                    $dados_cliente['rua'],
+                    $dados_cliente['numero_complemento']
+                );
             }
         }
-
+        
         public function getLivro($codigo){
 
             $query = "select * from livro where codigo_livro=$codigo;";
@@ -103,27 +113,6 @@
                 //RETORNA UM DICIONÁRIO DE DADOS DO ALUGUEL
                 return $dados_aluguel;
             }
-        }
-        
-        public function deleteCliente($cpf){
-            $query = "delete from cliente where cpf='$cpf';";
-
-            mysqli_query(
-                connection::getConnection(), 
-                $query
-            );
-        }
-
-        public function deleteLivro($codigo){
-            $query = "delete from livro where codigo_livro=$codigo;";
-            print($query);
-            
-            $result = mysqli_query(
-                connection::getConnection(), 
-                $query
-            );
-
-            print($result);
         }
 
         public function getQuantidadeClientes()
@@ -185,6 +174,34 @@
             }
         }
 
+        public function getTodosClientes(){
+            $arrayClientes = array();
+
+            $query = "SELECT * FROM cliente;";
+            
+            $clientes = mysqli_query(
+                connection::getConnection(), 
+                $query
+            );
+            
+            while ($cliente = mysqli_fetch_assoc($clientes)) {
+                //RETORNA TODOS OS CLIENTES
+                $arrayClientes[] = new cliente(
+                    $cliente['cpf'],
+                    $cliente['nome'],
+                    $cliente['rg'],
+                    $cliente['data_nascimento'],
+                    $cliente['telefone'],
+                    $cliente['cidade'],
+                    $cliente['bairro'],
+                    $cliente['rua'],
+                    $cliente['numero_complemento']
+                );
+            }
+            
+            return $arrayClientes;
+        }
+
         public function existCliente($cpf){
             if($this->getCliente($cpf) == null){
                 return false;
@@ -241,6 +258,27 @@
                 connection::getConnection(), 
                 $query
             );
+        }
+
+        public function deleteCliente($cpf){
+            $query = "delete from cliente where cpf='$cpf';";
+
+            mysqli_query(
+                connection::getConnection(), 
+                $query
+            );
+        }
+
+        public function deleteLivro($codigo){
+            $query = "delete from livro where codigo_livro=$codigo;";
+            print($query);
+            
+            $result = mysqli_query(
+                connection::getConnection(), 
+                $query
+            );
+
+            print($result);
         }
     }
 

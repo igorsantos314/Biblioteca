@@ -35,66 +35,54 @@
                 <?php
                     require_once('../scripts/persistencia/persistencia.php');
 
-                    $dados_cliente = persistencia::getInstance()->getCliente($_POST['cpf']);
+                    $cliente = persistencia::getInstance()->getCliente($_POST['cpf']);
 
-                    if($dados_cliente != null){
-                        
-                        $nome = $dados_cliente['nome'];
-                        $rg = $dados_cliente['rg'];
-                        $data_nascimento = $dados_cliente['data_nascimento'];
-                        $telefone = $dados_cliente['telefone'];
-                        $cidade = $dados_cliente['cidade'];
-                        $bairro = $dados_cliente['bairro'];
-                        $rua = $dados_cliente['rua'];
-                        $numero_complemento = $dados_cliente['numero_complemento'];
-
+                    if($cliente != null){
                         print("
-                            <tr>
-                                <th>NOME</th>
-                                <th>$nome</th>
-                            </tr>
-                            
-                            <tr>
-                                <th>RG</th>
-                                <th>$rg</th>
-                            </tr>
-                            
-                            <tr>
-                                <th>DATA DE NASCIMENTO</th>
-                                <th>$data_nascimento</th>
-                            </tr>
-                            
-                            <tr>
-                                <th>TELEFONE</th>
-                                <th>$telefone</th>
-                            </tr>
-                            
-                            <tr>
-                                <th>CIDADE</th>
-                                <th>$cidade</th>
-                            </tr>
-                            
-                            <tr>
-                                <th>BAIRRO</th>
-                                <th>$bairro</th>
-                            </tr>
-                            
-                            <tr>
-                                <th>RUA</th>
-                                <th>$rua</th>
-                            </tr>
-                            
-                            <tr>
-                                <th>NUMERO/COMPLEMENTO</th>
-                                <th>$numero_complemento</th>
-                            </tr>
-                            
-                            <tr>
-                                <th>
-                                    <button>EDITAR</button>
-                                    <button>DELETAR</button>
-                                </th>
-                            </tr>");
+                        <tr>
+                            <th>CPF</th>
+                            <th>".$cliente->getCpf()."</th>
+                        </tr>
+                        
+                        <tr>
+                            <th>NOME</th>
+                            <th>".$cliente->getNome()."</th>
+                        </tr>
+                        
+                        <tr>
+                            <th>RG</th>
+                            <th>".$cliente->getRg()."</th>
+                        </tr>
+                        
+                        <tr>
+                            <th>DATA DE NASCIMENTO</th>
+                            <th>".$cliente->getDataNascimento()."</th>
+                        </tr>
+                        
+                        <tr>
+                            <th>TELEFONE</th>
+                            <th>".$cliente->getTelefone()."</th>
+                        </tr>
+                        
+                        <tr>
+                            <th>CIDADE</th>
+                            <th>".$cliente->getCidade()."</th>
+                        </tr>
+                        
+                        <tr>
+                            <th>BAIRRO</th>
+                            <th>".$cliente->getBairro()."</th>
+                        </tr>
+                        
+                        <tr>
+                            <th>RUA</th>
+                            <th>".$cliente->getRua()."</th>
+                        </tr>
+                        
+                        <tr>
+                            <th>NUMERO/COMPLEMENTO</th>
+                            <th>".$cliente->getNumeroComplemento()."</th>
+                        </tr>");
                     }
                     else{
                         print("CLIENTE NÃO EXISTE !");
