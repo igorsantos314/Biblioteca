@@ -72,7 +72,7 @@
                 new clienteAlugaLivro(new cliente($cpfCliente), new livro($codigoLivro), $dataAluguel)
             );
         }
-
+        
         public function salvarEntregaLivro($id, $dataDevolucao){
             $instanceAluguel = new clienteAlugaLivro(
                 new cliente(),

@@ -36,7 +36,7 @@
                     require_once('../scripts/persistencia/persistencia.php');
 
                     $dados_livro = persistencia::getInstance()->getLivro($_POST['codigo']);
-
+                    
                     if($dados_livro != null){
                         
                         $codigo_livro = $dados_livro['codigo_livro'];

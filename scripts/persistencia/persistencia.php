@@ -50,6 +50,12 @@
                 connection::getConnection(), 
                 $query
             );
+            
+            //TIRAR LIVRO DO STOCK
+            $this->updateQuantidadeEmprestimo(
+                $aluguel->getLivroAluguel(),
+                -1
+            );
         }
 
         public function getCliente($cpf){
@@ -165,6 +171,20 @@
             }
         }
 
+        public function getQuantidadeLivro($codigo_livro){
+            $query = "SELECT quantidade FROM livro WHERE codigo_livro=$codigo_livro";
+            
+            $stock = mysqli_query(
+                connection::getConnection(), 
+                $query
+            );
+            
+            while ($livro = mysqli_fetch_assoc($stock)) {
+                //RETORNA QUANTIDADE DE LIVROS NO STOCK
+                return $livro['quantidade'];
+            }
+        }
+
         public function existCliente($cpf){
             if($this->getCliente($cpf) == null){
                 return false;
@@ -195,6 +215,28 @@
         public function updateStatusEmprestimo(clienteAlugaLivro $aluguel){
             $query = "UPDATE cliente_aluga_livro SET status='ENTREGUE', data_devolucao='".$aluguel->getDataDevolucao()."' WHERE id=".$aluguel->getId()."";
             
+            mysqli_query(
+                connection::getConnection(), 
+                $query
+            );
+
+            //PEGA O ALUGUEL COM TODOS OS DADOS
+            $aluguelCompleto = $this->getClienteAlugaLivro(
+                $aluguel->getId()
+            );
+            
+            //REPOR O LIVRO NO STOCK
+            $this->updateQuantidadeEmprestimo(
+                $aluguelCompleto['codigo_livro'],
+                1
+            );
+        }
+
+        public function updateQuantidadeEmprestimo($codigo_livro, $quantidade){
+            $query = "  UPDATE livro
+                        SET quantidade=quantidade + $quantidade
+                        WHERE codigo_livro=$codigo_livro;";
+
             mysqli_query(
                 connection::getConnection(), 
                 $query
